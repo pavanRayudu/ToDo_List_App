@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [taskdata, setTaskData] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
   const [error, setError] = useState(false);
   const [task, setTask] = useState("");
-  const author = JSON.parse(localStorage.getItem("userInfo"));
+  const author = JSON.parse(localStorage.getItem("userInfo")) || null;
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if(author === null) {
+      navigate('/login')
+      return;
+    }
     const config = {
       method: "GET",
       headers: {
@@ -22,8 +28,7 @@ const Dashboard = () => {
       .then((data) => {
         setTaskData(data);
       });
-  }, []);
-
+  });
   const editHandler = (e) => {
     const tag = e.target.id;
     console.log(tag);
@@ -81,7 +86,7 @@ const Dashboard = () => {
               setError(false);
             }}
           />
-          <button type="submit" class="add-task_btn">
+          <button type="submit" className="add-task_btn">
             +Add
           </button>
           {error && <span className="input-error">Field is empty</span>}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,7 +8,7 @@ const Register = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
-  
+  const [success, setSuccess] = useState(false);
 
 
   const submitHandler =async (e) => {
@@ -21,8 +21,10 @@ const Register = () => {
         },
       };
       const {data} = await axios.post('http://localhost:5000/register',{username, email, password},config);
-
+      setSuccess(true);
+      setError(false)
       console.log(data)
+      
 
     } catch(error) {
       setError(error.response.data.message)
@@ -74,8 +76,11 @@ const Register = () => {
         <button type="submit">
           Submit
         </button>
+
+        {success && <span style={{color:"green",fontWeight:'bold'}}>Registration Successfull</span>}
+
        {error && <div className="error">
-          <span>{error}</span>
+          <span style={{color:"red",fontWeight:'bold'}}>{error}</span>
         </div>}
 
         <div className="link">

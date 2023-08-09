@@ -4,7 +4,6 @@ import Header from "./Components/Header";
 import MainPage from "./Pages/LandingPage/MainPage";
 import Login from "./Pages/LoginPage/Login";
 import Register from "./Pages/RegisterPage/Register";
-// import UserPage from "./Pages/UserMainPage/UserPage";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function App() {

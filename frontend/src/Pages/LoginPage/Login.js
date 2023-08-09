@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -42,7 +42,7 @@ const Login = () => {
             id="email"
             type="email"
             placeholder=""
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {setEmail(e.target.value)}}
             value={email || ''}
           />
         </div>
@@ -61,7 +61,7 @@ const Login = () => {
           Sign In
         </button>
         {error && <div className="error">
-            <span>{error}</span>
+            <span style={{fontWeight:'bold',color:'red'}}>{error}</span>
         </div>}
 
         <div className="link">
