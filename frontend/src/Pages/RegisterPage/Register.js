@@ -44,6 +44,7 @@ const Register = () => {
         <div className="input-fields">
           <label htmlFor="username">Your name</label>
           <input
+          required
             id="username"
             type="text"
             placeholder="First name"
@@ -54,6 +55,7 @@ const Register = () => {
         <div className="input-fields">
           <label htmlFor="email">Email</label>
           <input
+          required
             id="email"
             type="email"
             placeholder=""
@@ -65,6 +67,7 @@ const Register = () => {
         <div className="input-fields">
           <label htmlFor="password">Password</label>
           <input
+          required
             id="password"
             type="password"
             placeholder="At least 5 characters"
@@ -73,7 +76,7 @@ const Register = () => {
           />
         </div>
 
-        <button type="submit">
+       <button type="submit" >
           Submit
         </button>
 

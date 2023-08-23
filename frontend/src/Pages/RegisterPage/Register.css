@@ -1,56 +1,60 @@
-.register{
-    
+.register,.login-page{
+    width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    padding: 0 256px;
 }
 .form {
-    border: 1px solid rgba(120, 119, 119, 0.5);
-    background-color: white;
-    padding:  15px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-radius: 10px;
+    width: 100%;
+    padding: 16px 32px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 48px var(--black25);
+    
 }
 .form h2{
-    font-size: 24px;
-    color: rgb(40, 40, 120);
+    font-size: 59px;
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 .form .input-fields{
+    margin-top: 8px;
+    font-size: 21px;
+    font-weight: bold;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 .input-fields input {
-    width: 280px;
+    width: 100%;
+    font-size: 21px;
     padding:10px;
     outline: none;
     background:none;
-    border: 1px solid rgba(120, 119, 119, 0.5);
+    border: 2px solid var(--black25);
     border-radius: 4px;
 }
 .form button[type='submit']{
-    height: 40px;
-    margin-top: 20px;
+    width: 100%;
+    margin-top: 24px;
+    padding: 16px 32px;
     cursor: pointer;
-    font-weight: normal;
-    font-size: 16px;
-    color: whitesmoke;
+    font-size: 21px;
+    font-weight: bold;
+    color: var(--text-color-white);
     border-radius: 5px;
-    background-color: rgba(40, 40, 120, 1);
+    background-color: var(--primary-color);
     border: none;
     outline: none;
 
 
 }
 .form button[type='submit']:hover {
-    background-color: whitesmoke;
-    color: rgb(40, 40, 120);
-    border: 1px solid black;
+    background-color: var(--additional-color);
+    color:var(--text-color-white);
 }
 
 .link{

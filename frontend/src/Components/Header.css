@@ -1,23 +1,72 @@
-.header{
+.header {
+  /* background-color: var(--secondary-color); */
+  color: var(--text-color);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--black25);
+}
+.header .nav-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 64px;
+  padding: 0;
+}
+.header a h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.nav-bar ul {
+  font-size: 21px;
+  font-weight: bold;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+
+}
+.nav-bar ul .nav-link {
+  color: var(--text-color);
+  text-transform: capitalize;
+}
+.styled-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-color);
+  padding: 8px 16px;
+  color: var(--text-color-white);
+  border-radius: 8px;
+}
+@media screen and (max-width:400px) {
+  .header .nav-section {
     width: 100%;
-    background-color: rgb(40, 40, 120);
-    color: white;
-    padding: 10px 15px;
-    position: fixed;
-    top: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.header .logo{
-    font-weight: normal;
+    margin: 16px 32px;
+    padding: 0;
+  }
+  .header a h1 {
     font-size: 24px;
-}
-.nav-bar ul{
+    font-weight: bold;
+    color: var(--text-color);
+  }
+  .nav-bar ul {
+    font-size: 21px;
+    font-weight: bold;
     list-style: none;
-    display: flex;
-    gap: 10px;
-}
-.nav-bar ul li[class='nav-username']{
-    text-transform: capitalize;
+    display: none;
+    align-items: center;
+    gap: 16px;
+  }
+
+  
 }

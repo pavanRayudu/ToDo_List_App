@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css";
+// import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -39,6 +39,7 @@ const Login = () => {
         <div className="input-fields">
           <label htmlFor="email">Email</label>
           <input
+          required
             id="email"
             type="email"
             placeholder=""
@@ -50,6 +51,7 @@ const Login = () => {
         <div className="input-fields">
           <label htmlFor="password">Password</label>
           <input
+          required
             id="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
