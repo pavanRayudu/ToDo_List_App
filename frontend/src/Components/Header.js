@@ -24,7 +24,7 @@ const Header = () => {
             <ul>
               {/* <li>pic</li> */}
               <li className="nav-link">Hi, {data.username || ""}</li>
-              <li onClick={logoutHandler} className="styled-button">Sign out<MdLogout /></li>
+              <li onClick={logoutHandler} className="styled-button"><MdLogout /></li>
             </ul>
           ) : (
             <ul>

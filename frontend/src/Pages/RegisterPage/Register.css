@@ -1,70 +1,82 @@
-.register,.login-page{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 256px;
+.register,
+.login-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 256px;
 }
 .form {
-    width: 100%;
-    padding: 16px 32px;
-    border-radius: 16px;
-    box-shadow: 0px 4px 48px var(--black25);
-    
+  width: 100%;
+  padding: 16px 32px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 48px var(--black25);
 }
-.form h2{
-    font-size: 59px;
-    color: var(--primary-color);
-    margin-bottom: 10px;
+.form h2 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 24px;
 }
-.form .input-fields{
-    margin-top: 8px;
-    font-size: 21px;
-    font-weight: bold;
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+.form .input-fields {
+  margin-top: 8px;
+  font-weight: bold;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 .input-fields input {
-    width: 100%;
-    font-size: 21px;
-    padding:10px;
-    outline: none;
-    background:none;
-    border: 2px solid var(--black25);
-    border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  background: none;
+  border: 2px solid var(--black25);
+  border-radius: 4px;
 }
-.form button[type='submit']{
-    width: 100%;
-    margin-top: 24px;
-    padding: 16px 32px;
-    cursor: pointer;
-    font-size: 21px;
-    font-weight: bold;
-    color: var(--text-color-white);
-    border-radius: 5px;
-    background-color: var(--primary-color);
-    border: none;
-    outline: none;
-
-
+.form button[type="submit"] {
+  width: 100%;
+  margin-top: 24px;
+  padding: 16px 32px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--text-color-white);
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  border: none;
+  outline: none;
 }
-.form button[type='submit']:hover {
-    background-color: var(--additional-color);
-    color:var(--text-color-white);
+.form button[type="submit"]:hover {
+  background-color: var(--additional-color);
+  color: var(--text-color-white);
 }
 
-.link{
-    margin-top: 10px;
+.link {
+  margin-top: 10px;
 }
-.link span{
-    font-size: 14px;
+.link span {
+  font-size: 14px;
 }
-.link span a{
-    font-weight: bold;
-    color: rgb(40, 40, 120);
-    text-decoration: none;
+.link span a {
+  font-weight: bold;
+  color: rgb(40, 40, 120);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .register,
+  .login-page {
+    padding: 0 16px;
+  }
+  .form {
+    padding: 8px 16px;
+  }
+  
+}
+@media screen and (min-width: 600px) and (max-width: 840px) {
+    .register,
+  .login-page {
+    padding: 0 64px;
+  }
 }

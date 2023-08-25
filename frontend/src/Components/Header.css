@@ -17,20 +17,18 @@
   padding: 0;
 }
 .header a h1 {
-  font-size: 32px;
+  font-size: 1.5rem;
   font-weight: bold;
   color: var(--primary-color);
 }
 
 .nav-bar ul {
-  font-size: 21px;
   font-weight: bold;
   list-style: none;
   display: flex;
   align-items: center;
   gap: 16px;
   cursor: pointer;
-
 }
 .nav-bar ul .nav-link {
   color: var(--text-color);
@@ -45,28 +43,13 @@
   color: var(--text-color-white);
   border-radius: 8px;
 }
-@media screen and (max-width:400px) {
+@media screen and (max-width: 600px) {
   .header .nav-section {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 16px 32px;
-    padding: 0;
-  }
-  .header a h1 {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--text-color);
+    margin: 8px 16px;
   }
   .nav-bar ul {
-    font-size: 21px;
-    font-weight: bold;
-    list-style: none;
     display: none;
-    align-items: center;
-    gap: 16px;
   }
-
-  
+}
+@media screen and (min-width: 600px) and (max-width: 840px) {
 }

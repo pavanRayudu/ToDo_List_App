@@ -15,13 +15,12 @@
 .main-page .hero-section span {
   display: block;
   text-align: center;
-  font-size: 21px;
 }
 .main-page .hero-section .main-heading {
   display: block;
-  font-size: 118px;
+  font-size: 3em;
   font-weight: bold;
-  line-height: 100px;
+  line-height: 1em;
   text-transform: capitalize;
   text-align: center;
   color: var(--primary-color);
@@ -45,25 +44,23 @@
   padding: 16px 32px;
   color: var(--text-color-white);
 }
-.get-started-btn:hover{
+.get-started-btn:hover {
   background-color: var(--border-color);
 }
 
-@media screen and (max-width:400px) {
-    .main-page .hero-section span {
-        display: block;
-        text-align: center;
-        font-size: 16px;
-      }
-    .main-page .hero-section .main-heading {
-        display: block;
-        font-size: 56px;
-        font-weight: bold;
-        line-height: 56px;
-        text-transform: capitalize;
-        text-align: center;
-        color: var(--text-color);
-      }
-      
-    
+@media screen and (max-width: 600px) {
+  .main-page .hero-section {
+    margin: 0px 32px;
+  }
+  .main-page .hero-section .main-heading {
+    font-size: 3em; 
+  }
+}
+@media screen and (min-width : 600px) and (max-width: 840px) {
+  .main-page .hero-section {
+    margin: 0px 64px;
+  }
+  .main-page .hero-section .main-heading {
+    font-size: 3em;
+  }
 }

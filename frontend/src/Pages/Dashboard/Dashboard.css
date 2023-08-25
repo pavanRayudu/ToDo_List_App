@@ -2,34 +2,61 @@
   width: 100%;
   height: 100%;
   position: relative;
-  margin-top: 96px;
-  z-index: 0;
-  overflow: scroll;
+  margin: 64px 0 0;
 }
 .dashboard .dashboard-section {
   height: 100%;
   position: relative;
-  /* background-color: red; */
   width: 100%;
-  padding: 0 256px;
+  padding: 10px 256px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
+}
+.tasks {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  gap: 8px;
+}
+.tasks-classification {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: var(--text-color);
+}
+.tasks-classification span {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.tasks-classification .completedTasks:hover {
+  background-color: var(--primary-color);
+  color: var(--text-color-white);
+  border-radius: 8px;
+}
+.tc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .add-task_form {
-  position: fixed;
-  bottom: 16px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .add-task_form form {
   background-color: var(--primary-color);
-  padding: 8px 16px;
+  padding: 8px 16px 8px 8px;
   border-radius: 16px;
-  width: 90%;
-  font-size: 21px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,7 +64,6 @@
 }
 .add-task_form form input,
 button {
-  font-size: 21px;
   background: none;
   outline: none;
   border: none;
@@ -53,28 +79,24 @@ button {
 .add-task_form form button {
   width: 40px;
   height: 40px;
-  margin: auto;
-  font-size: 40px;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--additional-color);
   border-radius: 50%;
+}
+.add-task_form form button .add-btn-icon {
+  font-size: 2rem;
+  color: var(--text-color-white);
 }
 .input-error {
   color: var(--error-color);
   font-weight: bold;
 }
-.tasks {
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  
-}
 
-.tasks .updateTaskBox {
+.dashboard .updateTaskBox {
+  top: 0;
+  margin: 0;
   width: 100%;
   height: 100%;
   background-color: var(--black75);
@@ -86,7 +108,7 @@ button {
   padding: 0 256px;
 }
 
-.tasks .updateTaskBox .updateTaskBox_container {
+.updateTaskBox .updateTaskBox_container {
   width: 100%;
   border-radius: 8px;
   padding: 24px 32px;
@@ -98,14 +120,12 @@ button {
 .updateTaskBox_container input {
   width: 100%;
   padding: 16px 24px;
-  font-size: 21px;
   border-radius: 8px;
   outline: none;
   border: 2px solid var(--black50);
 }
 .updateTaskBox_container button {
   width: 50%;
-  font-size: 21px;
   background: var(--primary-color);
   padding: 16px 24px;
   border-radius: 8px;
@@ -115,12 +135,12 @@ button {
 }
 
 .updateTask_close {
+  transform: scale(1.2);
   color: var(--text-color-white);
   border-radius: 50%;
   position: absolute;
   top: 16px;
   right: 16px;
-  font-size: 32px;
   background-color: var(--error-color);
   display: flex;
   cursor: pointer;
@@ -131,21 +151,18 @@ button {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border-radius: 5px;
-  gap: 8px;
+  border-radius: 8px;
   border-left: 4px solid var(--border-color);
 }
 .task .task_item {
-  font-size: 21px;
   font-weight: bold;
   width: 100%;
   cursor: pointer;
   text-transform: capitalize;
-  color: var(--black75);
+  color: var(--text-color);
 }
 .task.completed {
   border-left: 4px solid var(--error-color);
-  opacity: 0.7;
 }
 
 .task_controls {
@@ -153,11 +170,11 @@ button {
   gap: 8px;
 }
 .task_controls button {
+  transform: scale(1.2);
   cursor: pointer;
   outline: none;
   border: none;
   text-decoration: none;
-  font-size: 24px;
   display: flex;
   padding: 4px;
   color: var(--black75);
@@ -172,7 +189,38 @@ button {
 }
 .emptyTasks span {
   font-style: italic;
-  font-size: 21px;
   font-weight: bold;
   color: var(--black25);
+}
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading span {
+  font-weight: bold;
+  font-style: italic;
+  color: var(--black75);
+}
+@media screen and (max-width: 600px) {
+  .dashboard .dashboard-section {
+    padding: 10px 16px;
+  }
+  .dashboard .updateTaskBox {
+    padding: 0 16px;
+  }
+  .add-task_form form {
+    padding: 8px;
+    gap: 8px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 850px) {
+  .dashboard .dashboard-section {
+    padding: 10px 64px;
+  }
+  .dashboard .updateTaskBox {
+    padding: 0 56px;
+  }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   MdAdd,
   MdClose,
@@ -9,6 +9,7 @@ import {
   MdDelete,
   MdEdit,
 } from "react-icons/md";
+
 const Dashboard = () => {
   const [taskdata, setTaskData] = useState([]);
   const [error, setError] = useState(false);
@@ -18,12 +19,18 @@ const Dashboard = () => {
   const author = JSON.parse(localStorage.getItem("userInfo")) || null;
   const navigate = useNavigate();
   const [updatingTaskId, setUpdatingTaskId] = useState("");
+  const [isLoading, setIsLoading] = useState();
+  const [displayDues, setDisplayDues] = useState({
+    dues: true,
+    completed: false,
+  });
 
   useEffect(() => {
     if (author === null) {
       navigate("/login");
       return;
     }
+    setIsLoading(true);
     const config = {
       method: "GET",
       headers: {
@@ -35,8 +42,10 @@ const Dashboard = () => {
       .then((res) => res.json())
       .then((data) => {
         setTaskData(data);
+        setIsLoading(false);
       });
   }, []);
+  const completedTasksArray = taskdata.filter((taskdata) => taskdata.complete);
 
   // complete the task
   const clickHandler = async (id) => {
@@ -126,68 +135,115 @@ const Dashboard = () => {
       console.log(error.response.data.message);
     }
   };
+  const CompletedTasks = () => {
+    setDisplayDues({ dues: false, completed: true });
+  };
+  const dueTasks = () => {
+    setDisplayDues({ dues: true, completed: false });
+  };
 
   return (
     <div className="dashboard">
       <div className="dashboard-section">
-        
+        <div className="tasks-classification">
+          <span
+            className={!displayDues.dues ? "completedTasks" : ""}
+            onClick={dueTasks}
+          >
+            Due Tasks ({taskdata.length - completedTasksArray.length})
+          </span>
+          <span
+            className={!displayDues.completed ? "completedTasks" : ""}
+            onClick={CompletedTasks}
+          >
+            Completed({completedTasksArray.length})
+          </span>
+        </div>
+        {isLoading && (
+          <div className="loading">
+            <span>Loading...</span>
+          </div>
+        )}
+
         <div className="tasks">
-          {taskdata.length === 0 && (
-            <div className="emptyTasks">
-              <span>Tasks are Empty ,Add Tasks</span>
+          {displayDues.dues && (
+            <div className="tc due-tasks">
+              {taskdata.length - completedTasksArray.length === 0 &&
+              isLoading === false ? (
+                <div className="emptyTasks">
+                  <span>No Active Tasks</span>
+                </div>
+              ) : (
+                taskdata.map((task) => {
+                  return (
+                    !task.complete && (
+                      <div
+                        className={task.complete ? "task completed" : "task"}
+                        key={task._id}
+                      >
+                        <span
+                          className="task_item"
+                          onClick={() => clickHandler(task._id)}
+                        >
+                          {task.task}
+                        </span>
+                        <div className="task_controls">
+                          <button
+                            disabled={task.complete}
+                            onClick={(e) => {
+                              updateTaskHandler(e, task._id, task.task);
+                            }}
+                          >
+                            <MdEdit className="btn-icon" />
+                          </button>
+                          <button
+                            onClick={() => deleteHandler(task._id, task.task)}
+                          >
+                            <MdDelete className="btn-icon" />
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  );
+                })
+              )}
             </div>
           )}
 
-          {updateTaskPopup && (
-            <div className="updateTaskBox">
-              <div
-                className="updateTask_close"
-                onClick={() => setUpdateTaskPopup(false)}
-              >
-                <MdClose />
-              </div>
-              <form className="updateTaskBox_container">
-                <input
-                  required
-                  autoFocus
-                  value={updateTask}
-                  onChange={(e) => setUpdateTask(e.target.value)}
-                />
-                <button onClick={updateTaskSubmitHandler}>Change</button>
-              </form>
+          {displayDues.completed && (
+            <div className="tc due-tasks">
+              {completedTasksArray.length === 0 && isLoading === false ? (
+                <div className="emptyTasks">
+                  <span>No Completed Tasks</span>
+                </div>
+              ) : (
+                taskdata.map((task) => {
+                  return (
+                    task.complete && (
+                      <div
+                        className={task.complete ? "task completed" : "task"}
+                        key={task._id}
+                      >
+                        <span
+                          className="task_item"
+                          onClick={() => clickHandler(task._id)}
+                        >
+                          {task.task}
+                        </span>
+                        <div className="task_controls">
+                          <button
+                            onClick={() => deleteHandler(task._id, task.task)}
+                          >
+                            <MdDelete className="btn-icon" />
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  );
+                })
+              )}
             </div>
           )}
-          {taskdata.map((task) => {
-            return (
-              <div
-                className={task.complete ? "task completed" : "task"}
-                key={task._id}
-              >
-                <span
-                  className="task_item"
-                  style={{
-                    textDecoration: task.complete ? "line-through" : "none",
-                  }}
-                  onClick={() => clickHandler(task._id)}
-                >
-                  {task.task}
-                </span>
-                <div className="task_controls">
-                  <button
-                    disabled={task.complete}
-                    onClick={(e) => {
-                      updateTaskHandler(e, task._id, task.task);
-                    }}
-                  >
-                    <MdEdit className="btn-icon" />
-                  </button>
-                  <button onClick={() => deleteHandler(task._id, task.task)}>
-                    <MdDelete className="btn-icon" />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
         </div>
         <div className="add-task_form">
           <form onSubmit={taskSubmitHandler}>
@@ -202,12 +258,32 @@ const Dashboard = () => {
               value={task}
             />
             <button type="submit" className="add-task_btn">
-              <MdAdd />
+              <MdAdd className="add-btn-icon"/>
             </button>
           </form>
           {error && <span className="input-error">Field is empty</span>}
         </div>
       </div>
+
+      {updateTaskPopup && (
+        <div className="updateTaskBox">
+          <div
+            className="updateTask_close"
+            onClick={() => setUpdateTaskPopup(false)}
+          >
+            <MdClose />
+          </div>
+          <form className="updateTaskBox_container">
+            <input
+              required
+              autoFocus
+              value={updateTask}
+              onChange={(e) => setUpdateTask(e.target.value)}
+            />
+            <button onClick={updateTaskSubmitHandler}>Change</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

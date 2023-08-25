@@ -1,0 +1,25 @@
+{
+  "name": "todo_list_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend" : "cd frontend && npm start",
+    "backend" : "cd backend && npm start",
+    "dev" : "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavanRayudu/ToDo_List_App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavanRayudu/ToDo_List_App/issues"
+  },
+  "homepage": "https://github.com/pavanRayudu/ToDo_List_App#readme",
+  "dependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

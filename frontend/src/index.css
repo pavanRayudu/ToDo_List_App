@@ -4,17 +4,16 @@
   box-sizing: border-box;
 }
 :root {
-  --primary-color : #141E46;
-  --secondary-color : #FFF5E0;
-  --error-color : #BB2525;
-  --additional-color : #FF6969;
-  --text-color :  #252833;
-  --black75 :  rgba(37, 40, 51,0.75);
-  --black50 :  rgba(37, 40, 51,0.5);
-  --black25 :  rgba(37, 40, 51,0.25);
-  --text-color-white :  #f6f8ff;
-  --border-color : rgba(11, 217, 45, 0.75);
-
+  --primary-color: #141e46;
+  --secondary-color: #fff5e0;
+  --error-color: #bb2525;
+  --additional-color: #ff6969;
+  --text-color: #252833;
+  --black75: rgba(37, 40, 51, 0.75);
+  --black50: rgba(37, 40, 51, 0.5);
+  --black25: rgba(37, 40, 51, 0.25);
+  --text-color-white: #f6f8ff;
+  --border-color: rgba(11, 217, 45, 0.75);
 }
 
 body {
@@ -37,17 +36,29 @@ a {
 ::-webkit-scrollbar-track {
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--additional-color); 
+  background: var(--additional-color);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #b30000;
 }
-
-
-
+@media screen and (max-width: 600px) {
+  * {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width : 600px) and (max-width: 840px) {
+  * {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width : 840px){
+  * {
+    font-size: 21px;
+  }
+}
