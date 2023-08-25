@@ -20,7 +20,19 @@ app.use('/',userRouter);
 app.use('/dashboard',taskRouter);
 
 //--------------Deployment-----------------
+process.chdir('../');
+__dirname = process.cwd()
+console.log(__dirname)
 
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname,'/frontend/build')))
+    app.get('*',(req,res) => 
+        res.sendFile(path.resolve(__dirname,'frontend','build','index.html'))
+    )
+
+} else {
+    console.log('error')
+}
 
 
 //-----------------------------------------
